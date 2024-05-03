@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domain Setup &mdash; JAX-Fluids Docs  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Numerical Setup" href="NumericalSetup.html" />
+    <link rel="prev" title="Restart Setup" href="restart_setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JAX-Fluids Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Top Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="InputManager.html">Input Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InitializationManager.html">Initialization Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SimulationManager.html">Simulation Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CaseSetup.html">Case Setup</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="general_setup.html">General Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restart_setup.html">Restart Setup</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Domain Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#axis-setup">Axis Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#domain-decomposition-setup">Domain Decomposition Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#particle-setup">Particle Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NumericalSetup.html">Numerical Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CylinderFlow.html">The python file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example2_BubbleCollapse2D.html">Example 2: Bubble Collapse in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example3_SupersonicRamp2D.html">Example 3: Ramp in 2D</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JAX-Fluids Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a></li>
+          <li class="breadcrumb-item"><a href="CaseSetup.html">Case Setup</a></li>
+      <li class="breadcrumb-item active">Domain Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/domain_setup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="domain-setup">
+<h1>Domain Setup<a class="headerlink" href="#domain-setup" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DomainSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">AxisSetup</span>
+    <span class="n">y</span><span class="p">:</span> <span class="n">AxisSetup</span>
+    <span class="n">z</span><span class="p">:</span> <span class="n">AxisSetup</span>
+    <span class="n">decomposition</span><span class="p">:</span> <span class="n">DomainDecompositionSetup</span>     <span class="c1"># &gt;&gt;&gt; b</span>
+    <span class="n">particle_setup</span><span class="p">:</span> <span class="n">ParticleSetup</span>     <span class="c1"># &gt;&gt;&gt; c</span>
+    <span class="n">active_axes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>     <span class="c1"># the rest seems to play with axes. we can skip them for now.</span>
+    <span class="n">active_axes_indices</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">inactive_axes</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">inactive_axes_indices</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span>      <span class="c1"># no idea ?!</span>
+</pre></div>
+</div>
+<section id="axis-setup">
+<h2>Axis Setup<a class="headerlink" href="#axis-setup" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AxisSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">cells</span><span class="p">:</span> <span class="nb">int</span>      <span class="c1"># you choose the number of cells being considered in solver. it depends on the problem. here, according to the existing example we choose &quot;1200&quot; for x and y. (and for z if it  is 3D)</span>
+    <span class="nb">range</span><span class="p">:</span> <span class="n">Tuple</span>      <span class="c1"># you choose the spatial range. here we choose [-50.0, 200.0]</span>
+    <span class="n">stretching</span><span class="p">:</span> <span class="n">MeshStretchingSetup</span>     <span class="c1"># &gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<section id="mesh-stretching-setup">
+<h3>Mesh Stretching Setup<a class="headerlink" href="#mesh-stretching-setup" title="Link to this heading"></a></h3>
+<p>In cases that you need more precision, you may add some stretching mesh to the sensitive region.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MeshStretchingSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># choose between TUPLE_MESH_STRETCHING_TYPES = (&quot;CHANNEL&quot;, &quot;BOUNDARY_LAYER&quot;, &quot;PIECEWISE&quot;, &quot;BUBBLE_1&quot;, &quot;BUBBLE_2&quot;) + homogeneous ?? I think it is the default.</span>
+    <span class="n">tanh_value</span><span class="p">:</span> <span class="nb">float</span>     <span class="c1"># you need it if you choose &quot;CHANNEL&quot; , &quot;BOUNDARY_LAYER&quot;</span>
+    <span class="n">ratio_fine_region</span><span class="p">:</span> <span class="nb">float</span>      <span class="c1"># you need it if you choose &quot;BUBBLE_1&quot;, &quot;BUBBLE_2&quot;</span>
+    <span class="n">cells_fine</span><span class="p">:</span> <span class="nb">float</span>     <span class="c1"># # you need it if you choose &quot;BUBBLE_1&quot;, &quot;BUBBLE_2&quot;</span>
+    <span class="n">piecewise_parameters</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">PiecewiseStretchingParameters</span><span class="p">]</span>      <span class="c1"># &gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="piecewise-stretching-parameters">
+<h3>Piecewise Stretching Parameters<a class="headerlink" href="#piecewise-stretching-parameters" title="Link to this heading"></a></h3>
+<p>if you choose “PIECEWISE”, come here. in our problem we need this type. none from above is suitable.
+in each axis, divide the range to pieces and define how many cells it will stretch and how.
+Strestching means the width of the cell will change. naturally it is dec. const. inc. &gt;&gt;&gt; |   |  | | | | |  |   |    | :)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PiecewiseStretchingParameters</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span> <span class="n">choose</span> <span class="n">between</span> <span class="n">TUPLE_PIECEWISE_STRETCHING_TYPES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;DECREASING&quot;</span><span class="p">,</span> <span class="s2">&quot;INCREASING&quot;</span><span class="p">,</span> <span class="s2">&quot;CONSTANT&quot;</span><span class="p">)</span>
+    <span class="n">cells</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">upper_bound</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">lower_bound</span><span class="p">:</span> <span class="nb">float</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="domain-decomposition-setup">
+<h2>Domain Decomposition Setup<a class="headerlink" href="#domain-decomposition-setup" title="Link to this heading"></a></h2>
+<p>split the domain (and data) into subdomains that can be solved independently – but require data exchange on the domain boundaries.
+I guess it just solves the axes independant from eachother, which it seems we want it! so we add it with the default int=1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DomainDecompositionSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">split_x</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">split_y</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">split_z</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="particle-setup">
+<h2>Particle Setup<a class="headerlink" href="#particle-setup" title="Link to this heading"></a></h2>
+<p>we don’t work with particles. skip this part.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ParticleSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">particle_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="restart_setup.html" class="btn btn-neutral float-left" title="Restart Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="NumericalSetup.html" class="btn btn-neutral float-right" title="Numerical Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, TUM-AER.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

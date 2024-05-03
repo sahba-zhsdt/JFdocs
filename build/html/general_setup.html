@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Setup &mdash; JAX-Fluids Docs  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Restart Setup" href="restart_setup.html" />
+    <link rel="prev" title="Case Setup" href="CaseSetup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JAX-Fluids Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Top Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="InputManager.html">Input Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InitializationManager.html">Initialization Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SimulationManager.html">Simulation Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CaseSetup.html">Case Setup</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">General Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restart_setup.html">Restart Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain_setup.html">Domain Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_condition_setup.html">Boundary Condition Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="initial_condition_setup.html">Initia Condition Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_manager_setup.html">Material Properties Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NumericalSetup.html">Numerical Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CylinderFlow.html">The python file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example2_BubbleCollapse2D.html">Example 2: Bubble Collapse in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example3_SupersonicRamp2D.html">Example 3: Ramp in 2D</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JAX-Fluids Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a></li>
+          <li class="breadcrumb-item"><a href="CaseSetup.html">Case Setup</a></li>
+      <li class="breadcrumb-item active">General Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/general_setup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="general-setup">
+<h1>General Setup<a class="headerlink" href="#general-setup" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GeneralSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<span class="n">case_name</span><span class="p">:</span> <span class="nb">str</span>      <span class="c1"># &quot;karman_Re_300&quot;</span>
+<span class="n">end_time</span><span class="p">:</span> <span class="nb">float</span>     <span class="c1"># &quot;900.0&quot;</span>
+<span class="n">end_step</span><span class="p">:</span> <span class="nb">int</span>
+<span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span>      <span class="c1"># &quot;./resluts&quot;</span>
+<span class="n">save_dt</span><span class="p">:</span> <span class="nb">float</span>      <span class="c1"># &quot;1.0&quot;</span>
+<span class="n">save_step</span><span class="p">:</span> <span class="nb">int</span>
+<span class="n">save_timestamps</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="n">save_start</span><span class="p">:</span> <span class="nb">float</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">case_name</span></code>: Choose a simple name. It will appear later in your directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_time</span></code>:  The time at which the simulation will end.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_step</span></code>: The step at which the simulation will end.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can choose either <code class="docutils literal notranslate"><span class="pre">end_time</span></code> or <code class="docutils literal notranslate"><span class="pre">end_step</span></code>.</p>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">save_path</span></code>: The path where the data will be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_dt</span></code>: The time interval at which the data will be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_step</span></code>: The step interval at which the data will be saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_timestamps</span></code>: A timestamp is a numeric representation of a specific point in time. Use this option a specific time is required.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can choose either <code class="docutils literal notranslate"><span class="pre">save_dt</span></code>, <code class="docutils literal notranslate"><span class="pre">save_step</span></code>, or <code class="docutils literal notranslate"><span class="pre">save_timestamps</span></code>.</p>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">save_start</span></code>: The time at which the data saving will start.(?)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regarding the current example, the attributes are given example values as comments.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All of the classes are namedtuples. You can access the attributes by using the dot operator. For example, <code class="docutils literal notranslate"><span class="pre">GeneralSetup.end_time</span></code>.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="CaseSetup.html" class="btn btn-neutral float-left" title="Case Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="restart_setup.html" class="btn btn-neutral float-right" title="Restart Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, TUM-AER.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

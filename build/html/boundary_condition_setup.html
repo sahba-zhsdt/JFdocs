@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boundary Condition Setup &mdash; JAX-Fluids Docs  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Initia Condition Setup" href="initial_condition_setup.html" />
+    <link rel="prev" title="Domain Setup" href="domain_setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JAX-Fluids Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Top Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="InputManager.html">Input Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InitializationManager.html">Initialization Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SimulationManager.html">Simulation Manager</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CaseSetup.html">Case Setup</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="general_setup.html">General Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="restart_setup.html">Restart Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="domain_setup.html">Domain Setup</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Boundary Condition Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boundary-conditions-field">Boundary Conditions Field</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="initial_condition_setup.html">Initia Condition Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="material_manager_setup.html">Material Properties Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="NumericalSetup.html">Numerical Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CylinderFlow.html">The python file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Example2_BubbleCollapse2D.html">Example 2: Bubble Collapse in 2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example3_SupersonicRamp2D.html">Example 3: Ramp in 2D</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JAX-Fluids Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="Example1_CylinderFlow2D.html">Example 1: Cylinder Flow in 2D</a></li>
+          <li class="breadcrumb-item"><a href="CaseSetup.html">Case Setup</a></li>
+      <li class="breadcrumb-item active">Boundary Condition Setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/boundary_condition_setup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boundary-condition-setup">
+<h1>Boundary Condition Setup<a class="headerlink" href="#boundary-condition-setup" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">primitives</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># define BC for primitve variables: u,v,w,p,rho based on BC field     # &gt;&gt;&gt;</span>
+    <span class="n">levelset</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># ok here is where the problem plays an vital role. we have &quot;moving fluid and fixed solid with no deformation&quot; in our problem.</span>
+                                              <span class="c1"># it is a special and simplified case of famous &quot;Fluid-Fluid Levelset&quot;</span>
+                                              <span class="c1"># so we define this part, too. But what is the meaning?</span>
+    <span class="n">particles</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># we skip this. the problem is not about particles.</span>
+</pre></div>
+</div>
+<section id="boundary-conditions-field">
+<h2>Boundary Conditions Field<a class="headerlink" href="#boundary-conditions-field" title="Link to this heading"></a></h2>
+<p>pay attention to the writing format in the exampele.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionsField</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">east</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># &gt;&gt;&gt;</span>
+    <span class="n">west</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">north</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">south</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">top</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">bottom</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<section id="boundary-conditions-face">
+<h3>Boundary Conditions Face<a class="headerlink" href="#boundary-conditions-face" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionsFace</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">boundary_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># PRIMITIVES_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;, &quot;WALL&quot;, &quot;ISOTHERMALWALL&quot;, &quot;MASSTRANSFERWALL&quot;, &quot;ISOTHERMALMASSTRANSFERWALL&quot;, &quot;DIRICHLET&quot;, &quot;NEUMANN&quot;)</span>
+                              <span class="c1"># LEVELSET_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;,&quot;DIRICHLET&quot;, &quot;REINITIALIZATION&quot;)</span>
+                              <span class="c1"># PARTICLE_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;)</span>
+
+    <span class="n">bounding_domain_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># what is this? I guess the BC can change and be applicable to a specific part.</span>
+    <span class="n">primitives_callable</span><span class="p">:</span> <span class="n">NamedTuple</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># if not INACTIVE, ZEROGRADIENT; define primitives at the boundry: u,v,w,p,rho &gt; ofcourse in DIRICHLET they will be constant quantities.</span>
+                                            <span class="c1"># here, we have DIRICHLET BC in the boundry from which fluid flows. Q: real or non-dimensionalized?</span>
+    <span class="n">levelset_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># I have no comprehension of this part! what does it mean levelset BC? but we will use it as example.</span>
+    <span class="n">wall_velocity_callable</span><span class="p">:</span> <span class="n">VelocityCallable</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># these three are needed if &quot;WALL&quot;, &quot;ISOTHERMALWALL&quot;, &quot;MASSTRANSFERWALL&quot;, &quot;ISOTHERMALMASSTRANSFERWALL&quot; are selected.</span>
+    <span class="n">wall_temperature_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>          <span class="c1"># .</span>
+    <span class="n">wall_mass_transfer</span><span class="p">:</span> <span class="n">WallMassTransferSetup</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># .</span>
+    <span class="n">primitives_table</span><span class="p">:</span> <span class="n">PrimitivesTable</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># I think it is just a concatenation of primitives and axes names and values?</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="domain_setup.html" class="btn btn-neutral float-left" title="Domain Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="initial_condition_setup.html" class="btn btn-neutral float-right" title="Initia Condition Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, TUM-AER.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

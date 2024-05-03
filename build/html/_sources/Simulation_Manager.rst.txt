@@ -1,0 +1,9 @@
+SimulationManager
+==============
+
+The SimulationManager is the top-level class in JAX-FLUIDS. It provides functionality to perform conventional CFD simulations as well as end-to-end optimization of ML models.
+The most important methods of the SimulationManager are:
+1. simulate()               -   Performs conventional CFD simulation.
+                                Output
+2. feedforward()            -   Feedforward of a batch of data, i.e., advances a batch of initial conditions in time for a fixed amount of steps
+3. do_integration_step()    -   Performs a single integration step

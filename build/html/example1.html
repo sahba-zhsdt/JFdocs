@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; JAX-Fluids Docs  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Input Manager" href="InputManager.html" />
+    <link rel="prev" title="JAX-Fluids Example Tutorials!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            JAX-Fluids Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Example 1. Cylinder Flow in 2D</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="InputManager.html">Input Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="InitializationManager.html">Initialization Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SimulationManager.html">Simulation Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseSetup.html">Case Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NumericalSetup.html">Numerical Setup</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">JAX-Fluids Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>Cylinder Flow, also known as a Kármán vortex street, is one of the fundemental problems in fluid mechanics.
+Considering Reynolds number in different ranges, the cylinder wake behaves differently.
+For more details refer to <a class="reference external" href="https://doi.org/10.1146/annurev.fl.28.010196.002401">this paper</a>.
+The example files are located in the:</p>
+<ul class="simple">
+<li><p>to the developers</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">nlfvs/examples/examples_2D/08_cylinderflow</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nlfvs/tests/levelset/solids/cylinderflow</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>to the users</p></li>
+</ul>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">JAXFLUIDS/examples/examples_2D/08_cylinderflow</span></code></p>
+</div></blockquote>
+<p>In each directory, a single python file and two json files are provided. The starting point is the python file.
+The first classes to be imported are:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jaxfluids</span> <span class="kn">import</span> <span class="n">InputManager</span><span class="p">,</span> <span class="n">InitializationManager</span><span class="p">,</span> <span class="n">SimulationManager</span>
+</pre></div>
+</div>
+<p>These are three main classes in JAX-Fluids:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="InputManager.html">Input Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="InitializationManager.html">Initialization Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SimulationManager.html">Simulation Manager</a></li>
+</ul>
+</div>
+<p>The InputManager takes the <code class="docutils literal notranslate"><span class="pre">.json</span></code> files as input;
+afterwards, the output is fed to the InitializationManager and the SimulationManager.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SETUP SIMULATION</span>
+<span class="n">input_manager</span> <span class="o">=</span> <span class="n">InputManager</span><span class="p">(</span><span class="s2">&quot;case_setup.json&quot;</span><span class="p">,</span> <span class="s2">&quot;numerical_setup.json&quot;</span><span class="p">)</span>
+<span class="n">initialization_manager</span> <span class="o">=</span> <span class="n">InitializationManager</span><span class="p">(</span><span class="n">input_manager</span><span class="p">)</span>
+<span class="n">sim_manager</span> <span class="o">=</span> <span class="n">SimulationManager</span><span class="p">(</span><span class="n">input_manager</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The input <code class="docutils literal notranslate"><span class="pre">.json</span></code> files are discussed here:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="CaseSetup.html">Case Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NumericalSetup.html">Numerical Setup</a></li>
+</ul>
+</div>
+<p>Next, to run the simulation, <code class="docutils literal notranslate"><span class="pre">InitializationManager.initialization()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">SimulationManager.simulate()</span></code> are used:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># RUN SIMULATION</span>
+<span class="n">simulation_buffers</span><span class="p">,</span> <span class="n">time_control_variables</span><span class="p">,</span>\
+<span class="n">forcing_parameters</span> <span class="o">=</span> <span class="n">initialization_manager</span><span class="o">.</span><span class="n">initialization</span><span class="p">()</span>
+<span class="n">sim_manager</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">simulation_buffers</span><span class="p">,</span> <span class="n">time_control_variables</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="JAX-Fluids Example Tutorials!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="InputManager.html" class="btn btn-neutral float-right" title="Input Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, TUM-AER.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
