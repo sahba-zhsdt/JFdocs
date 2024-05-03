@@ -102,11 +102,11 @@
   <section id="general-setup">
 <h1>General Setup<a class="headerlink" href="#general-setup" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GeneralSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-<span class="n">case_name</span><span class="p">:</span> <span class="nb">str</span>      <span class="c1"># &quot;karman_Re_300&quot;</span>
-<span class="n">end_time</span><span class="p">:</span> <span class="nb">float</span>     <span class="c1"># &quot;900.0&quot;</span>
+<span class="n">case_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="n">end_time</span><span class="p">:</span> <span class="nb">float</span>
 <span class="n">end_step</span><span class="p">:</span> <span class="nb">int</span>
-<span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span>      <span class="c1"># &quot;./resluts&quot;</span>
-<span class="n">save_dt</span><span class="p">:</span> <span class="nb">float</span>      <span class="c1"># &quot;1.0&quot;</span>
+<span class="n">save_path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="n">save_dt</span><span class="p">:</span> <span class="nb">float</span>
 <span class="n">save_step</span><span class="p">:</span> <span class="nb">int</span>
 <span class="n">save_timestamps</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
 <span class="n">save_start</span><span class="p">:</span> <span class="nb">float</span>
@@ -136,11 +136,16 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Regarding the current example, the attributes are given example values as comments.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
 <p>All of the classes are namedtuples. You can access the attributes by using the dot operator. For example, <code class="docutils literal notranslate"><span class="pre">GeneralSetup.end_time</span></code>.</p>
+</div>
+<p>Below, the example setup for the domain is shown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;general&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;case_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Karman_Re_100_d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;end_time&quot;</span><span class="p">:</span> <span class="mf">900.0</span><span class="p">,</span>
+    <span class="s2">&quot;save_dt&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;save_path&quot;</span><span class="p">:</span> <span class="s2">&quot;./customized_examples/von_Karman/Re100&quot;</span>
+<span class="p">},</span>
+</pre></div>
 </div>
 </section>
 

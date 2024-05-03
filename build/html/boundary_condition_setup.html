@@ -105,18 +105,22 @@
   <section id="boundary-condition-setup">
 <h1>Boundary Condition Setup<a class="headerlink" href="#boundary-condition-setup" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">primitives</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># define BC for primitve variables: u,v,w,p,rho based on BC field     # &gt;&gt;&gt;</span>
-    <span class="n">levelset</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># ok here is where the problem plays an vital role. we have &quot;moving fluid and fixed solid with no deformation&quot; in our problem.</span>
-                                              <span class="c1"># it is a special and simplified case of famous &quot;Fluid-Fluid Levelset&quot;</span>
-                                              <span class="c1"># so we define this part, too. But what is the meaning?</span>
-    <span class="n">particles</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># we skip this. the problem is not about particles.</span>
+
+    <span class="n">primitives</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">levelset</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">particles</span><span class="p">:</span> <span class="n">BoundaryConditionsField</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">primitives</span></code>: Define the conditions on primitive variables (u,v,w,p,rho)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">levelset</span></code>, <code class="docutils literal notranslate"><span class="pre">particles</span></code>:  Repeat the same for levelset and particles in accordance to the problem.</p></li>
+</ul>
+<p>Since in the current example “moving fluid and fixed solid with no deformation” exists, Levelset is used.</p>
 <section id="boundary-conditions-field">
 <h2>Boundary Conditions Field<a class="headerlink" href="#boundary-conditions-field" title="Link to this heading"></a></h2>
-<p>pay attention to the writing format in the exampele.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionsField</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">east</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># &gt;&gt;&gt;</span>
+
+    <span class="n">east</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">west</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">north</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">south</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BoundaryConditionsFace</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -127,18 +131,70 @@
 <section id="boundary-conditions-face">
 <h3>Boundary Conditions Face<a class="headerlink" href="#boundary-conditions-face" title="Link to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BoundaryConditionsFace</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">boundary_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># PRIMITIVES_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;, &quot;WALL&quot;, &quot;ISOTHERMALWALL&quot;, &quot;MASSTRANSFERWALL&quot;, &quot;ISOTHERMALMASSTRANSFERWALL&quot;, &quot;DIRICHLET&quot;, &quot;NEUMANN&quot;)</span>
-                              <span class="c1"># LEVELSET_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;,&quot;DIRICHLET&quot;, &quot;REINITIALIZATION&quot;)</span>
-                              <span class="c1"># PARTICLE_TYPES = (&quot;ZEROGRADIENT&quot;, &quot;SYMMETRY&quot;, &quot;PERIODIC&quot;, &quot;INACTIVE&quot;)</span>
 
-    <span class="n">bounding_domain_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># what is this? I guess the BC can change and be applicable to a specific part.</span>
-    <span class="n">primitives_callable</span><span class="p">:</span> <span class="n">NamedTuple</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># if not INACTIVE, ZEROGRADIENT; define primitives at the boundry: u,v,w,p,rho &gt; ofcourse in DIRICHLET they will be constant quantities.</span>
-                                            <span class="c1"># here, we have DIRICHLET BC in the boundry from which fluid flows. Q: real or non-dimensionalized?</span>
-    <span class="n">levelset_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># I have no comprehension of this part! what does it mean levelset BC? but we will use it as example.</span>
-    <span class="n">wall_velocity_callable</span><span class="p">:</span> <span class="n">VelocityCallable</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># these three are needed if &quot;WALL&quot;, &quot;ISOTHERMALWALL&quot;, &quot;MASSTRANSFERWALL&quot;, &quot;ISOTHERMALMASSTRANSFERWALL&quot; are selected.</span>
-    <span class="n">wall_temperature_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>          <span class="c1"># .</span>
-    <span class="n">wall_mass_transfer</span><span class="p">:</span> <span class="n">WallMassTransferSetup</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># .</span>
-    <span class="n">primitives_table</span><span class="p">:</span> <span class="n">PrimitivesTable</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># I think it is just a concatenation of primitives and axes names and values?</span>
+    <span class="n">boundary_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">bounding_domain_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">primitives_callable</span><span class="p">:</span> <span class="n">NamedTuple</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">wall_velocity_callable</span><span class="p">:</span> <span class="n">VelocityCallable</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">wall_temperature_callable</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">wall_mass_transfer</span><span class="p">:</span> <span class="n">WallMassTransferSetup</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">primitives_table</span><span class="p">:</span> <span class="n">PrimitivesTable</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">bounfary_type</span></code>: Choose according to the following list:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRIMITIVES_TYPES</span></code>: (“ZEROGRADIENT”, “SYMMETRY”, “PERIODIC”, “INACTIVE”, “WALL”, “ISOTHERMALWALL”, “MASSTRANSFERWALL”, “ISOTHERMALMASSTRANSFERWALL”, “DIRICHLET”, “NEUMANN”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LEVELSET_TYPES</span></code>: (“ZEROGRADIENT”, “SYMMETRY”, “PERIODIC”, “INACTIVE”,”DIRICHLET”, “REINITIALIZATION”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PARTICLE_TYPES</span></code>: (“ZEROGRADIENT”, “SYMMETRY”, “PERIODIC”, “INACTIVE”)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bounding_domain_callable</span></code>: (?)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">primitives_callable</span></code>: Define primitives at the boundry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wall_velocity_callable</span></code>, <code class="docutils literal notranslate"><span class="pre">wall_temperature_callable</span></code>, and <code class="docutils literal notranslate"><span class="pre">wall_mass_transfe</span></code>: Define if the boundary is a wall.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">primitives_table</span></code>: Concatenation of primitives and axes names and values. (?)</p></li>
+</ul>
+<p>Below, the example setup for the domain is shown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;boundary_conditions&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;primitives&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;ZEROGRADIENT&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;DIRICHLET&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;primitives_callable&quot;</span><span class="p">:{</span>
+                <span class="s2">&quot;rho&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                <span class="s2">&quot;u&quot;</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span>
+                <span class="s2">&quot;v&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
+            <span class="p">}</span>
+
+        <span class="p">},</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;top&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;INACTIVE&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;bottom&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;INACTIVE&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;levelset&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ZEROGRADIENT&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;INACTIVE&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;INACTIVE&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">},</span>
 </pre></div>
 </div>
 </section>

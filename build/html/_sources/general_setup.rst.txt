@@ -4,11 +4,11 @@ General Setup
 .. code-block:: python
 
     class GeneralSetup(NamedTuple):
-    case_name: str      # "karman_Re_300"
-    end_time: float     # "900.0"
+    case_name: str     
+    end_time: float    
     end_step: int     
-    save_path: str      # "./resluts"
-    save_dt: float      # "1.0"
+    save_path: str      
+    save_dt: float     
     save_step: int      
     save_timestamps: np.ndarray     
     save_start: float 
@@ -32,7 +32,15 @@ General Setup
 * ``save_start``: The time at which the data saving will start.(?)
 
 .. note::
-    Regarding the current example, the attributes are given example values as comments.
-
-.. note::
     All of the classes are namedtuples. You can access the attributes by using the dot operator. For example, ``GeneralSetup.end_time``. 
+
+Below, the example setup for the domain is shown.
+
+.. code-block:: python
+
+        "general":{
+        "case_name": "Karman_Re_100_d",
+        "end_time": 900.0,
+        "save_dt": 1.0,
+        "save_path": "./customized_examples/von_Karman/Re100"
+    },

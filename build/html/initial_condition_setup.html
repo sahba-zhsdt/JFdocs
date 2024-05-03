@@ -105,31 +105,30 @@
   <section id="initia-condition-setup">
 <h1>Initia Condition Setup<a class="headerlink" href="#initia-condition-setup" title="Link to this heading"></a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InitialConditionSetup</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">primitives</span><span class="p">:</span> <span class="n">NamedTuple</span>      <span class="c1"># u,v,w,p,rho</span>
-    <span class="n">levelset</span><span class="p">:</span> <span class="n">InitialConditionLevelset</span>      <span class="c1"># &gt;&gt;&gt; a</span>
-    <span class="n">solid_velocity</span><span class="p">:</span> <span class="n">VelocityCallable</span>      <span class="c1"># I guess if solid</span>
-    <span class="n">particles</span><span class="p">:</span> <span class="n">InitialConditionParticles</span>      <span class="c1"># we skip. no particles</span>
-    <span class="n">turbulent</span><span class="p">:</span> <span class="n">InitialConditionTurbulent</span>      <span class="c1"># we skip. no turbulence</span>
-    <span class="n">cavitation</span><span class="p">:</span> <span class="n">InitialConditionCavitation</span>      <span class="c1"># we skip. no cavitation</span>
-    <span class="n">is_turbulent</span><span class="p">:</span> <span class="nb">bool</span>      <span class="c1"># we skip. no turbulence</span>
-    <span class="n">is_cavitation</span><span class="p">:</span> <span class="nb">bool</span>     <span class="c1"># we skip. no cavitation</span>
+
+    <span class="n">primitives</span><span class="p">:</span> <span class="n">NamedTuple</span>
+    <span class="n">levelset</span><span class="p">:</span> <span class="n">InitialConditionLevelset</span>
+    <span class="n">solid_velocity</span><span class="p">:</span> <span class="n">VelocityCallable</span>
+    <span class="n">particles</span><span class="p">:</span> <span class="n">InitialConditionParticles</span>
+    <span class="n">turbulent</span><span class="p">:</span> <span class="n">InitialConditionTurbulent</span>
+    <span class="n">cavitation</span><span class="p">:</span> <span class="n">InitialConditionCavitation</span>
+    <span class="n">is_turbulent</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">is_cavitation</span><span class="p">:</span> <span class="nb">bool</span>
 </pre></div>
 </div>
+<p>If the problem is not turbulent, then the <cite>is_turbulent</cite> is False. The same for cavitation.
+Accordingly, the <cite>turbulent</cite> and <cite>cavitation</cite> are not defined.
+Also,``solid_velocity`` is used for a moving solid.</p>
 <section id="initial-condition-levelset">
 <h2>Initial Condition Levelset<a class="headerlink" href="#initial-condition-levelset" title="Link to this heading"></a></h2>
-<p>basically, I have problem in understanding the meaning of IC in levelset.
-bUT, I think we have four options to define from which function the levelset will evolve!
-block - NACA - h5 fiel - levelset user defined function. choose one and continue.
-in the existing example, this inline lambda function is defined: “levelset”: “lambda x,y: - 0.5 + jnp.sqrt(x**2 + y**2)”
-I can understand it is a circle (the cross section of the cylinder). so “-0,5” is the distance from free surface?
-what is zero-level of this? how the levels will vary by movment of fluid over this cylinder, then?
-Is not the cross section between moving fluid and the cylinder a curved surface??
-I need to run the file to see the shape!</p>
+<p>There are four options to define from which function the levelset is used.
+Choose one of them and set the corresponding boolean to True.
+Some pre-defined shapes are available in the <code class="docutils literal notranslate"><span class="pre">shape_dictionary</span></code> in the <code class="docutils literal notranslate"><span class="pre">InitialLevelsetBlock</span></code> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InitialConditionLevelset</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="n">blocks</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">InitialLevelsetBlock</span><span class="p">]</span>     <span class="c1"># &gt;&gt;&gt;</span>
+    <span class="n">blocks</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">InitialLevelsetBlock</span><span class="p">]</span>
     <span class="n">levelset_callable</span><span class="p">:</span> <span class="n">Callable</span>
     <span class="n">h5_file_path</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">NACA_profile</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># it is airfoil. used for ramp flow I think</span>
+    <span class="n">NACA_profile</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">is_blocks</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">is_callable</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">is_NACA</span><span class="p">:</span> <span class="nb">bool</span>
@@ -150,6 +149,20 @@ I need to run the file to see the shape!</p>
     <span class="c1"># }</span>
     <span class="n">parameters</span><span class="p">:</span> <span class="n">NamedTuple</span>
     <span class="n">bounding_domain_callable</span><span class="p">:</span> <span class="n">Callable</span>
+</pre></div>
+</div>
+<p>Below, the example setup for the domain is shown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;initial_condition&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;primitives&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;rho&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="s2">&quot;u&quot;</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span>
+        <span class="s2">&quot;v&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="mf">1.0</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;levelset&quot;</span><span class="p">:</span><span class="s2">&quot;lambda x,y: - 0.5 + jnp.sqrt(x**2 + y**2)&quot;</span>
+
+<span class="p">},</span>
 </pre></div>
 </div>
 </section>

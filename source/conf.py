@@ -13,10 +13,9 @@ author = 'AER-TUM'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx_copybutton',
-              'sphinxcontrib.bibtex']
+extensions = ['sphinx_copybutton']
 
-bibtex_bibfiles = ['references.bib']
+# bibtex_bibfiles = ['references.bib']
 
 templates_path = ['_templates']
 exclude_patterns = []
